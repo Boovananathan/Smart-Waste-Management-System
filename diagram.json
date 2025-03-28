@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Vignesh V",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -56.1,
+      "left": -205.7,
+      "attrs": { "distance": "220" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 209.2, "left": 67.2, "attrs": {} },
+    { "type": "wokwi-ir-receiver", "id": "ir1", "top": -39.75, "left": 219.02, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:ECHO", "esp:32", "green", [ "v48", "h114.4" ] ],
+    [ "ultrasonic1:TRIG", "esp:33", "green", [ "v57.6", "h124.4" ] ],
+    [ "servo1:PWM", "esp:13", "green", [ "h-153.6", "v173" ] ],
+    [ "servo1:V+", "esp:5V", "red", [ "h-67.2", "v-67.1" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v163.2", "h134.4" ] ],
+    [ "ultrasonic1:GND", "esp:CMD", "black", [ "v153.6", "h104.4" ] ],
+    [ "servo1:GND", "esp:CMD", "black", [ "h-86.4", "v-38.4" ] ],
+    [
+      "ir1:GND",
+      "esp:CMD",
+      "black",
+      [ "v288", "h0", "v0", "h-240", "v9.6", "h-38.4", "v-153.6", "h0" ]
+    ],
+    [ "ir1:VCC", "esp:5V", "red", [ "v297.6", "h0" ] ],
+    [ "ir1:DAT", "esp:34", "green", [ "v0", "h105.6", "v0", "h0", "v-96", "h-384", "v115.2" ] ]
+  ],
+  "dependencies": {}
+}
